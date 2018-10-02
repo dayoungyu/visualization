@@ -1,6 +1,6 @@
 ---
 title: "viz_i"
-output: html_document
+output: md_document
 ---
 
 ```{r setup, include=FALSE}
@@ -104,5 +104,28 @@ weather_plot = ggplot(weather_df, aes(x = tmin, y = tmax)) +
   geom_point(aes(color = name), alpha = .5) 
 
 ggsave("weather_plot.pdf", weather_plot, width = 8, height = 5)
+```
+
+
+## Last example
+
+make a bunch of plots
+
+```{r}
+ggplot(weather_df, aes(y = prcp, x = name)) +
+  geom_boxplot()
+```
+
+```{r}
+ggplot(weather_df, aes(y = prcp, fill = name)) +
+  geom_violin()
+```
+
+```{r}
+weather_df %>%
+    filter(prcp > 0) %>%
+    ggplot(aes(y = prcp, fill = name)) +
+    geom_density(alpha = 0.5)
+    
 ```
 
